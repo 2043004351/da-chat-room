@@ -36,4 +36,4 @@ jobs:
           last_ssh: |
             cd /www/wwwroot/ws.woxingwang.top
             npm i
-            pm2 reload rooms
+            pm2 reload index.js
