@@ -50,8 +50,8 @@ io.on("connection", (socket) => {
   //   let rooms = io.sockets.adapter.rooms;
   //   console.log(rooms);
   // });
-  socket.on("rooms", function () {
-    console.log("rooms")
+  socket.on("requestJoinRoom", function () {
+    console.log("测试房间")
     socket.emit("rooms", groupList)
   });
 });
