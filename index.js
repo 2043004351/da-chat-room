@@ -16,9 +16,10 @@ let groupList = [];
 let people = 0;
 app.get("/create", (req, res) => {
   console.log(req.session.userName);
-  const { userName, avatar } = req.query;
+  const { userName, avatar, userId } = req.query;
   req.session.userName = userName;
   req.session.avatar = avatar;
+  req.session.userId = userId;
   req.session.save();
   res.send({
     code: 200,
@@ -45,9 +46,12 @@ io.on("connection", (socket) => {
     });
     scoket.join(id);
   });
-  socket.on("requestJoinRoom", function (data) {
-    let rooms = io.sockets.adapter.rooms;
-    console.log(rooms);
+  // socket.on("requestJoinRoom", function (data) {
+  //   let rooms = io.sockets.adapter.rooms;
+  //   console.log(rooms);
+  // });
+  socket.on("rooms", function (data) {
+    socket.emit("rooms", groupList)
   });
   socket.on("test", function (data) {
     console.log(1);
